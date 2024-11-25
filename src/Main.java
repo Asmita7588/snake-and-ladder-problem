@@ -10,13 +10,15 @@ public class Main {
         System.out.println("Single Player starts at position " + position);
 
         Random random = new Random();
-        while (position < WINNING_POSITION) {
+        while (position != WINNING_POSITION) {
 
             int dice = random.nextInt(6) + 1;// Random number between 1 and 6
-            position += dice;
 
-            if (position > WINNING_POSITION) {
-                position -= dice;
+            if (position + dice > WINNING_POSITION) {
+                System.out.println("Rolled a " + dice + ", but need exact roll. Stay at " + position);
+            } else {
+                position += dice;
+                System.out.println("Rolled a " + dice + ", Current position: " + position);
             }
 
             System.out.println("Rolled a " + dice + ", Current position: " + position);
@@ -41,6 +43,9 @@ public class Main {
             }
 
         }
+        System.out.println("Player wins the game at position " + WINNING_POSITION + "!");
+
+
 
        }
     }
