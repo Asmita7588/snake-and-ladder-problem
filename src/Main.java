@@ -7,22 +7,30 @@ public class Main {
         int position = 0;
         final int WINNING_POSITION = 100;
         int diceRolls = 0;
+        int[] positions = {0, 0}; // Positions for Player 1 and Player 2
+        int currentPlayer = 0; //
+
         System.out.println("Starting game...");
         System.out.println("Single Player starts at position " + position);
 
         Random random = new Random();
-        while (position < WINNING_POSITION) {
+        System.out.println("Starting Snake and Ladder game for 2 players...");
+
+        while (positions[0] < WINNING_POSITION && positions[1] < WINNING_POSITION ) {
 
             int dice = random.nextInt(6) + 1;// Random number between 1 and 6
-            diceRolls++;
-            if (position + dice > WINNING_POSITION) {
-                System.out.println("Rolled a " + dice + ", but need exact roll. Stay at " + position);
-            } else {
-                position += dice;
-                System.out.println("Rolled a " + dice + ", Current position: " + position);
-            }
+            System.out.println("player " + (currentPlayer + 1) + " rolled a " + dice);
 
-            System.out.println("Rolled a " + dice + ", Current position: " + position);
+            if (positions[currentPlayer] + dice <= WINNING_POSITION) {
+                positions[currentPlayer] += dice;
+                System.out.println("Player " + (currentPlayer + 1) + " is now at position " + positions[currentPlayer]);
+
+            }
+            if(positions[currentPlayer] == WINNING_POSITION) {
+                System.out.println("Player " + (currentPlayer + 1) + " wins!");
+                break;
+            }
+            currentPlayer = 1 - currentPlayer;
 
         System.out.println("Player wins the game at position " + position + "!");
             System.out.println("Player rolls the die: " + dice);
