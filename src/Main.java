@@ -6,14 +6,15 @@ public class Main {
     public static void main(String[] args) {
         int position = 0;
         final int WINNING_POSITION = 100;
+        int diceRolls = 0;
         System.out.println("Starting game...");
         System.out.println("Single Player starts at position " + position);
 
         Random random = new Random();
-        while (position != WINNING_POSITION) {
+        while (position < WINNING_POSITION) {
 
             int dice = random.nextInt(6) + 1;// Random number between 1 and 6
-
+            diceRolls++;
             if (position + dice > WINNING_POSITION) {
                 System.out.println("Rolled a " + dice + ", but need exact roll. Stay at " + position);
             } else {
@@ -43,6 +44,7 @@ public class Main {
             }
 
         }
+        System.out.println("Player wins the game after " + diceRolls + " rolls!");
         System.out.println("Player wins the game at position " + WINNING_POSITION + "!");
 
 
