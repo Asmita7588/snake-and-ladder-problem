@@ -5,28 +5,42 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         int position = 0;
+        final int WINNING_POSITION = 100;
+        System.out.println("Starting game...");
         System.out.println("Single Player starts at position " + position);
 
         Random random = new Random();
-        int dice = random.nextInt(6) + 1;// Random number between 1 and 6
-        int option = random.nextInt(3); // 0 = No Play, 1 = Ladder, 2 = Snake
-        System.out.println("Player rolls the die: " + dice);
+        while (position < WINNING_POSITION) {
 
-        switch(option){
+            int dice = random.nextInt(6) + 1;// Random number between 1 and 6
+            position += dice;
 
-            case 0:
-                System.out.println("No Play! Stay at position " + position);
-                break;
-            case 1:
-                position += dice;
-                System.out.println("Ladder! Move to position " + position);
-                break;
-            case 2:
+            if (position > WINNING_POSITION) {
                 position -= dice;
-                if (position < 0) position = 0;
-                System.out.println("Snake! Move to position " + position);
-                break;
+            }
+
+            System.out.println("Rolled a " + dice + ", Current position: " + position);
+
+        System.out.println("Player wins the game at position " + position + "!");
+            System.out.println("Player rolls the die: " + dice);
+            int option = random.nextInt(3); // 0 = No Play, 1 = Ladder, 2 = Snake
+            switch (option) {
+
+                case 0:
+                    System.out.println("No Play! Stay at position " + position);
+                    break;
+                case 1:
+                    position += dice;
+                    System.out.println("Ladder! Move to position " + position);
+                    break;
+                case 2:
+                    position -= dice;
+                    if (position < 0) position = 0;
+                    System.out.println("Snake! Move to position " + position);
+                    break;
+            }
+
         }
 
+       }
     }
-}
